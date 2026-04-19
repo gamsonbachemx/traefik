@@ -77,6 +77,7 @@ clean:
 	@echo "Cleaning..."
 	@rm -rf $(BUILD_DIR)
 	@rm -f coverage.out
+	@rm -f coverage.html
 
 ## docker-build: Build Docker image
 docker-build:
