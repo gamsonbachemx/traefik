@@ -88,6 +88,11 @@ deps:
 	$(GO) mod download
 	$(GO) mod tidy
 
+## cover: Open coverage report in browser after running tests
+cover: test
+	@echo "Opening coverage report..."
+	$(GO) tool cover -html=coverage.out
+
 ## help: Show this help message
 help:
 	@echo "Usage: make [target]"
