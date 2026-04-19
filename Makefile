@@ -40,6 +40,12 @@ build-darwin:
 	@mkdir -p $(BUILD_DIR)
 	GOOS=darwin GOARCH=amd64 $(GO) build $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY)_darwin_amd64 $(CMD_DIR)
 
+## build-darwin-arm: Build for macOS Apple Silicon
+build-darwin-arm:
+	@echo "Building $(BINARY) for macOS (arm64)..."
+	@mkdir -p $(BUILD_DIR)
+	GOOS=darwin GOARCH=arm64 $(GO) build $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY)_darwin_arm64 $(CMD_DIR)
+
 ## test: Run unit tests
 test:
 	@echo "Running tests..."
