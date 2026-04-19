@@ -96,6 +96,12 @@ cover: test
 	$(GO) tool cover -html=coverage.out -o coverage.html
 	@if [ "$(shell uname)" = "Darwin" ]; then open coverage.html; else xdg-open coverage.html; fi
 
+## watch: Rebuild automatically on file changes (requires entr)
+# Install entr: brew install entr / apt install entr
+watch:
+	@echo "Watching for changes..."
+	find . -name '*.go' | entr -r make build
+
 ## help: Show this help message
 help:
 	@echo "Usage: make [target]"
