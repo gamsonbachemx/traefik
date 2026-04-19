@@ -89,9 +89,11 @@ deps:
 	$(GO) mod tidy
 
 ## cover: Open coverage report in browser after running tests
+# Note: on macOS use 'open', on Linux use 'xdg-open'. Defaulting to 'open' here.
 cover: test
 	@echo "Opening coverage report..."
-	$(GO) tool cover -html=coverage.out
+	$(GO) tool cover -html=coverage.out -o coverage.html
+	open coverage.html
 
 ## help: Show this help message
 help:
