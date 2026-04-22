@@ -61,10 +61,11 @@ func runCmd(traefikConfiguration *TraefikConfiguration) func(args []string) erro
 
 // healthCheck returns the function that checks the health of traefik.
 // Note: ping must be explicitly enabled in the static config for this to work.
+// The ping endpoint defaults to ":8080/ping" unless overridden in the config.
 func healthCheck(traefikConfiguration *TraefikConfiguration) func() error {
 	return func() error {
 		if traefikConfiguration.Ping == nil {
-			return fmt.Errorf("ping configuration is not defined")
+			return fmt.Errorf("ping configuration is not defined; enable it via the 'ping' section in your static config")
 		}
 		return traefikConfiguration.Ping.Check()
 	}
