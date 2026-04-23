@@ -62,6 +62,7 @@ func runCmd(traefikConfiguration *TraefikConfiguration) func(args []string) erro
 // healthCheck returns the function that checks the health of traefik.
 // Note: ping must be explicitly enabled in the static config for this to work.
 // The ping endpoint defaults to ":8080/ping" unless overridden in the config.
+// If ping is not configured, a clear error message is returned to avoid confusion.
 func healthCheck(traefikConfiguration *TraefikConfiguration) func() error {
 	return func() error {
 		if traefikConfiguration.Ping == nil {
@@ -73,6 +74,7 @@ func healthCheck(traefikConfiguration *TraefikConfiguration) func() error {
 
 // Execute runs the traefik command with the provided arguments.
 // If the command fails, the error is printed to stderr and the process exits with code 1.
+// Exit code 1 is used for all errors to keep things simple and scriptable.
 func Execute() {
 	cmd := NewTraefikCommand()
 	if err := cmd.Execute(os.Args[1:]); err != nil {
