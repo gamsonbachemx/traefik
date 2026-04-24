@@ -12,8 +12,10 @@ import (
 
 func main() {
 	// Print version information on startup for debugging purposes.
-	fmt.Printf("Traefik version %s built with %s on %s/%s\n",
+	// Note: also printing the commit hash when available helps trace exact builds.
+	fmt.Printf("Traefik version %s (commit: %s) built with %s on %s/%s\n",
 		version.Version,
+		version.Codename,
 		runtime.Version(),
 		runtime.GOOS,
 		runtime.GOARCH,
